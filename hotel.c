@@ -192,9 +192,9 @@ void help() {
     printf("Comenzi disponibile:\n");
     printf("afiseaza_camere - Afișează camere disponibile\n");
     printf("afiseaza_servicii - Afișează servicii disponibile\n");
-    printf("rezervare_camera - Rezervă cameră (<id> <persoane> <nopți>)\n");
-    printf("anulare_rezervare - Anulează rezervare (<id>)\n");
-    printf("adauga_camera - Adaugă cameră nouă (<id> <tip> <facilități> <preț> <capacitate>)\n");
+    printf("rezervare_camera - Rezervă cameră ( <id(ex 1)> <persoane(ex 4)> <nopți(ex 2)> )\n");
+    printf("anulare_rezervare - Anulează rezervare ( <id(ex 1)> )\n");
+    printf("adauga_camera - Adaugă cameră nouă ( <id(ex 1)> <tip(ex Cameră pentru o persoană)> <facilități(ex Wi-Fi, TV)> <preț(ex 400)> <capacitate(ex 2)> )\n");
     printf("help - Afișează acest mesaj\n");
 }
 
@@ -216,7 +216,7 @@ int main(int argc, char *argv[])
     }
     else if(strcmp(argv[1], "rezervare_camera") == 0) {
         if(argc != 5) {
-            printf("Utilizare: rezervarea_camerei <ID> <persoane> <nopți>\n");
+            printf("Utilizare: rezervarea_camerei <ID(ex 8)> <persoane(ex 4)> <nopți(ex 2)>\n");
         }
         rezervare_camera(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]));
     }
@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
     else if(strcmp(argv[1], "adauga_camera") == 0){
         if(argc != 7)
         {
-            printf("Utilizare: adauga_camera <ID> \"<Tip>\"  \"<Facilități>\" <Preț> <Capacitate>\n");
+            printf("Utilizare: adauga_camera <ID> \"<Tip>\"  \"<Facilități>\" <Preț(ex 400)> <Capacitate(ex 2)>\n");
         }
             adauga_camera(
                 atoi(argv[2]),
@@ -250,7 +250,6 @@ int main(int argc, char *argv[])
         free(servicii);
         return 0;
 }
-
 
 
 
