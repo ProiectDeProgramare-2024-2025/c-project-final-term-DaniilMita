@@ -194,7 +194,7 @@ void help() {
     printf("Comenzi disponibile:\n");
     printf("afiseaza_camere - Afișează camere disponibile\n");
     printf("afiseaza_servicii - Afișează servicii disponibile\n");
-    printf("rezervare_camera - Rezervă cameră (<id> <tip> <durata> <nopți>)\n");
+    printf("rezervare_camera - Rezervă cameră (<id> <persoane> <nopți>)\n");
     printf("anulare_rezervare - Anulează rezervare\n");
     printf("adauga_camera - Adaugă cameră nouă (<id> <tip> <capacitate> <preț>)\n");
     printf("help - Afișează acest mesaj\n");
