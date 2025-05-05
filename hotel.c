@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #define RESET   "\033[0m"
 #define GREEN   "\033[32m"
 #define BLUE    "\033[34m"
 #define YELLOW  "\033[33m"
-#define RED     "\033[31m"
 
 typedef struct {
     int id;
@@ -131,42 +129,42 @@ void rezervare_camera(int camera_id, int num_pers, int durata) {
     for (int i = 0; i < num_camere; i++) {
         if (camere[i].id == camera_id) {
             if (!camere[i].valabil) {
-                printf(RED "🚫 Cameră deja rezervată!\n" RESET);
+                printf("🚫 Cameră deja rezervată!\n");
                 return;
             }
             if (num_pers > camere[i].nrpers) {
-                printf(RED "🚫 Capacitate maximă: %d persoane!\n" RESET, camere[i].nrpers);
+                printf("🚫 Capacitate maximă: %d persoane!\n" , camere[i].nrpers);
                 return;
             }
             camere[i].valabil = 0;
             salveaza_camere();
-            printf(GREEN "✅ Rezervare confirmată:\nID: %d\nTip: %s\nDurata: %d nopți\nPreț total: %d\n" RESET,camera_id, camere[i].tip, durata, camere[i].pret * durata);
+            printf("✅ Rezervare confirmată:\nID: %d\nTip: %s\nDurata: %d nopți\nPreț total: %d\n" ,camera_id, camere[i].tip, durata, camere[i].pret * durata);
             return;
         }
     }
-    printf(RED "🚫 Cameră invalidă!\n" RESET);
+    printf("🚫 Cameră invalidă!\n");
 }
 
 void anulare_rezervare(int camera_id) {
     for (int i = 0; i < num_camere; i++) {
         if (camere[i].id == camera_id) {
             if (camere[i].valabil) {
-                printf(RED "🚫 Nu există rezervare pentru această cameră!\n" RESET);
+                printf("🚫 Nu există rezervare pentru această cameră!\n" );
                 return;
             }
             camere[i].valabil = 1;
             salveaza_camere();
-            printf(GREEN "✅ Rezervare anulată cu succes!\n" RESET);
+            printf("✅ Rezervare anulată cu succes!\n" );
             return;
         }
     }
-    printf(RED "🚫 Cameră invalidă!\n" RESET);
+    printf("🚫 Cameră invalidă!\n" );
 }
 
 void adauga_camera(int id, const char* tip, const char* facilitati, int pret, int nrpers) {
     for(int i = 0; i < num_camere; i++) {
         if(camere[i].id == id) {
-            printf(RED "🚫 Eroare: ID %d există deja!\n" RESET, id);
+            printf("🚫 Eroare: ID %d există deja!\n" , id);
             return;
         }
     }
@@ -187,7 +185,7 @@ void adauga_camera(int id, const char* tip, const char* facilitati, int pret, in
     camere = temp;
     camere[num_camere++] = noua;
     salveaza_camere();
-    printf(GREEN "✅ Camera %d a fost adăugată cu succes!\n" RESET, id);
+    printf("✅ Camera %d a fost adăugată cu succes!\n" , id);
 }
 
 void help() {
@@ -195,8 +193,8 @@ void help() {
     printf("afiseaza_camere - Afișează camere disponibile\n");
     printf("afiseaza_servicii - Afișează servicii disponibile\n");
     printf("rezervare_camera - Rezervă cameră (<id> <persoane> <nopți>)\n");
-    printf("anulare_rezervare - Anulează rezervare\n");
-    printf("adauga_camera - Adaugă cameră nouă (<id> <tip> <capacitate> <preț>)\n");
+    printf("anulare_rezervare - Anulează rezervare (<id>)\n");
+    printf("adauga_camera - Adaugă cameră nouă (<id> <tip> <facilități> <preț> <capacitate>)\n");
     printf("help - Afișează acest mesaj\n");
 }
 
@@ -245,18 +243,13 @@ int main(int argc, char *argv[])
             help();
         }
         else {
-            printf(RED "🚫 Comandă invalidă!\n" RESET);
+            printf("🚫 Comandă invalidă!\n");
             help();
         }
         free(camere);
         free(servicii);
         return 0;
 }
-
-
-
-
-
 
 
 
